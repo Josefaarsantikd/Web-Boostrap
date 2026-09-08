@@ -1,0 +1,47 @@
+body {
+    color: #333;
+}
+
+section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.navbar-brand, h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.navbar.bg-secondary {
+    background-color: #1e4620 !important;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Gambar/ltr.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nama-hijau {
+    color: #28a745;
+}
+
+.foto-profil {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.nama-hijau {
+    color: #28a745;
+}
+
+.deskripsi-tentang {
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
