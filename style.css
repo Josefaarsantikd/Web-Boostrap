@@ -1,0 +1,226 @@
+/* Pengaturan Umum */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: #333;
+    padding-top: 56px; /* Memberi jarak agar konten tidak tertutup fixed navbar */
+    font-family: 'Montserrat', sans-serif;
+}
+
+section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.navbar-brand, h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.navbar.bg-secondary {
+    background-color: #1e4620 !important;
+}
+
+/* Transisi & Efek Garis Bawah pada Navbar Link (Active & Hover) */
+.navbar-nav .nav-link {
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    width: 100%;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Gambar/ltr.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nama-hijau {
+    color: #28a745;
+}
+
+.foto-profil {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.deskripsi-tentang {
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+/* Efek Hover & Shadow Halus pada Card Destinasi */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #d0d0d0; /* Memunculkan border yang jelas dan tampak */
+    border-radius: 10px;        /* Membuat sudutnya sedikit melengkung rapi */
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+/* Efek saat kursor menyentuh kartu destinasi */
+.card:hover {
+    transform: translateY(-6px);
+    border-color: #28a745;     /* Border berubah jadi warna hijau saat di-hover */
+    box-shadow: 0 10px 20px rgba(40, 167, 69, 0.15) !important;
+}
+
+/* Mengatur tinggi gambar pada carousel destinasi */
+#proyek .carousel-item img {
+    height: 300px;
+    object-fit: cover;
+}
+
+/* Efek Interaktif pada Tombol */
+.btn-primary {
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* Styling untuk Circular Progress Bar (Teks Hitam, Tanpa Background Kotak) */
+.circular-progress-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.circular-card {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eaeaea;
+    flex: 1;
+    min-width: 140px;
+    transition: all 0.3s ease; /* Transisi halus untuk warna dan posisi */
+}
+
+/* Efek saat kursor menyentuh kotak */
+.circular-card:hover {
+    background-color: #f0fdf4; /* Warna hijau sangat lembut (bisa diubah sesuai selera) */
+    border-color: #28a745;    /* Border berubah jadi hijau */
+    transform: translateY(-4px); /* Efek sedikit terangkat */
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.15); /* Bayangan hijau tipis */
+}
+
+.circular-progress {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    /* Gradien hijau alam dengan jalur sisa abu-abu terang */
+    background: conic-gradient(#28a745 var(--progress), #e0e0e0 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px auto;
+}
+
+/* Lingkaran dalam (donut) dengan background putih bersih */
+.circular-progress::before {
+    content: '';
+    position: absolute;
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    background-color: #ffffff;
+}
+
+/* Teks persentase di tengah lingkaran menjadi hitam */
+.progress-value {
+    position: relative;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+/* Teks nama gunung di bawah lingkaran menjadi hitam */
+.circular-card p {
+    color: #000000;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+/* Efek Hover pada Tautan Instagram */
+.instagram-link {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.instagram-link:hover {
+    opacity: 0.75;
+    transform: scale(1.05);
+}
+
+/* Menyamakan tinggi kolom dan kartu destinasi */
+.row > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Memastikan card-body meregang sempurna dan meratakan elemen di dalamnya */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Membuat teks deskripsi di dalam card terdistribusi rapi */
+.card-body p {
+    margin-bottom: 0.5rem;
+}
+
+/* Efek interaktif untuk kartu fasilitas */
+.facility-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #eaeaea !important;
+}
+
+.facility-card:hover {
+    transform: translateY(-5px);
+    border-color: #28a745 !important;
+    box-shadow: 0 8px 16px rgba(40, 167, 69, 0.15) !important;
+}
