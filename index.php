@@ -255,8 +255,7 @@ if (!$koneksi) {
             <div class="col-md-5 mb-4 mb-md-0 d-flex">
                 <div class="card w-100 p-4 border border-2 shadow-sm rounded">
                     <h3 class="mb-3 font-weight-bold">Connect With Me</h3>
-                    <p class="text-muted mb-4 small">Jangan ragu untuk terhubung melalui media sosial di bawah ini untuk
-                        update trip terbaru.</p>
+                    <p class="text-muted mb-4 small">Jangan ragu untuk terhubung melalui media sosial di bawah ini untuk update trip terbaru.</p>
 
                     <div class="d-flex flex-column justify-content-between flex-grow-1">
                         <!-- Instagram -->
@@ -275,7 +274,6 @@ if (!$koneksi) {
                             </div>
                         </a>
 
-                        <!-- WhatsApp -->
                         <!-- GitHub -->
                         <a href="https://github.com/Josefaarsantikd" target="_blank"
                             class="d-flex align-items-center text-dark text-decoration-none p-3 border rounded shadow-sm social-box">
@@ -316,8 +314,7 @@ if (!$koneksi) {
                                 <option value="Ranu Kumbolo">Ranu Kumbolo</option>
                             </select>
                         </div>
-                                            
-                        <!-- Tambahan Input Tanggal & Jumlah Peserta yang Rapi -->
+                                                
                         <div class="mb-3">
                             <label class="form-label text-muted small mb-1">Tanggal Keberangkatan</label>
                             <input type="date" class="form-control" name="tanggal" required>
@@ -330,15 +327,17 @@ if (!$koneksi) {
                     </form>
                 </div>
             </div>
+        </div>
+    </section>
 
-    <!-- SECTION: Riwayat Pesanan Trip (Bentuk Bubble/Card) -->
+    <!-- SECTION: Riwayat Pesanan Trip -->
     <section class="container my-5">
         <div class="row">
             <div class="col-12">
                 <h3 class="text-center mb-4 fw-bold">Riwayat Pesanan Trip Terbaru</h3>
                 <div class="row g-3">
                     <?php
-                    $query = "SELECT * FROM pesanan ORDER BY id DESC";
+                    $query = "SELECT * FROM pesanan ORDER BY id DESC LIMIT 3";
                     $result = mysqli_query($koneksi, $query);
                     
                     if ($result && mysqli_num_rows($result) > 0) {
