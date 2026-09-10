@@ -1,10 +1,21 @@
+<?php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "db_trip"; // Pastikan sama dengan nama database di phpMyAdmin
+
+$koneksi = mysqli_connect($host, $user, $pass, $db);
+if (!$koneksi) {
+    die("Koneksi gagal: " . mysqli_connect_error());
+}
+?>
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latihan_WebJS_Josefa</title>
+    <title>Jos Journey</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -209,73 +220,37 @@
     <section id="gear" class="container py-5">
         <h2 class="mb-5 text-center font-weight-bold">Fasilitas Yang Didapatkan</h2>
         <div class="row">
-            <!-- Fasilitas 1: Perlengkapan Berkemah -->
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm border-0 facility-card">
-                    <img src="Gambar/f1.jpg" class="card-img-top" alt="Alat Berkemah"
-                        style="height: 160px; object-fit: cover;">
-                    <div class="card-body text-center d-flex flex-column justify-content-between">
-                        <div>
-                            <h5 class="card-title font-weight-bold text-success" style="font-size: 1.1rem;">Alat
-                                Berkemah</h5>
-                            <p class="card-text text-muted small">Tenda dome, Toilet Portabel, flysheet, sleeping bag,
-                                dan matras.</p>
+            <?php
+            $query_fasilitas = mysqli_query($koneksi, "SELECT * FROM fasilitas");
+            if ($query_fasilitas) {
+                while ($row = mysqli_fetch_assoc($query_fasilitas)) {
+            ?>
+                <!-- Kartu Fasilitas Dinamis dari Database -->
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card h-100 shadow-sm border-0 facility-card">
+                        <img src="Gambar/<?php echo $row['gambar']; ?>" class="card-img-top" alt="Fasilitas"
+                            style="height: 160px; object-fit: cover;">
+                        <div class="card-body text-center d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title font-weight-bold text-success" style="font-size: 1.1rem;">
+                                    <?php echo $row['nama_fasilitas']; ?>
+                                </h5>
+                                <p class="card-text text-muted small">
+                                    <?php echo $row['deskripsi']; ?>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Fasilitas 2: Konsumsi -->
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm border-0 facility-card">
-                    <img src="Gambar/f2.jpg" class="card-img-top" alt="Konsumsi"
-                        style="height: 160px; object-fit: cover;">
-                    <div class="card-body text-center d-flex flex-column justify-content-between">
-                        <div>
-                            <h5 class="card-title font-weight-bold text-success" style="font-size: 1.1rem;">Konsumsi
-                            </h5>
-                            <p class="card-text text-muted small">Makan 2x, alat makan, serta logistik air minum.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fasilitas 3: Perizinan & Pemandu -->
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm border-0 facility-card">
-                    <img src="Gambar/f3.jpg" class="card-img-top" alt="Perizinan & Pemandu"
-                        style="height: 160px; object-fit: cover;">
-                    <div class="card-body text-center d-flex flex-column justify-content-between">
-                        <div>
-                            <h5 class="card-title font-weight-bold text-success" style="font-size: 1.1rem;">Perizinan &
-                                Pemandu</h5>
-                            <p class="card-text text-muted small">Tiket masuk/SIMAKSI, Basecamp, Asuransi, Tour Guide, &
-                                Mountain Leader.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fasilitas 4: Keamanan & Pendukung -->
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm border-0 facility-card">
-                    <img src="Gambar/f4.jpg" class="card-img-top" alt="Keamanan"
-                        style="height: 160px; object-fit: cover;">
-                    <div class="card-body text-center d-flex flex-column justify-content-between">
-                        <div>
-                            <h5 class="card-title font-weight-bold text-success" style="font-size: 1.1rem;">Keamanan &
-                                P3K</h5>
-                            <p class="card-text text-muted small">Kotak P3K, trash bag, multitool, peta & kompas, serta
-                                peluit keselamatan.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php 
+                }
+            } 
+            ?>
         </div>
     </section>
 
     <section id="kontak" class="container py-5">
-        <div class="row">
+        <div class="row justify-content-center g-4">
             <!-- Kotak Sisi Kiri: Connect With Me -->
             <div class="col-md-5 mb-4 mb-md-0 d-flex">
                 <div class="card w-100 p-4 border border-2 shadow-sm rounded">
@@ -320,36 +295,86 @@
                 </div>
             </div>
 
-            <!-- Kotak Sisi Kanan: Booking Form -->
-            <div class="col-md-7 d-flex">
-                <div class="card w-100 p-4 border border-2 shadow-sm rounded">
-                    <h3 class="mb-3 font-weight-bold">Booking</h3>
-                    <p class="text-muted mb-4 small">Isi formulir di bawah ini untuk memesan paket tripmu.</p>
-
-                    <form class="d-flex flex-column justify-content-between flex-grow-1">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <input type="text" class="form-control" placeholder="Nama Lengkap">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="email" class="form-control" placeholder="EMAIL">
-                            </div>
+            <!-- SECTION: Form Booking -->
+            <div class="col-md-6">
+                <div class="card shadow-sm p-4">
+                    <h3 class="fw-bold mb-2">Booking</h3>
+                    <p class="text-muted small">Isi formulir di bawah ini untuk memesan paket tripmu.</p>
+                    
+                    <form action="proses-booking.php" method="POST">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="nama_peserta" placeholder="Nama Lengkap" required>
                         </div>
-                        <div class="form-group">
-                            <textarea class="form-control" rows="4"
-                                placeholder="Pesan atau Destinasi yang Dipilih..."></textarea>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" name="email" placeholder="EMAIL" required>
                         </div>
-                        <button type="submit" class="btn btn-success px-4 mt-auto">Kirim Booking</button>
+                        <div class="mb-3">
+                            <select class="form-select" name="destinasi" required>
+                                <option value="" disabled selected>Pilih Destinasi Trip...</option>
+                                <option value="Prau">Prau</option>
+                                <option value="Merbabu">Merbabu</option>
+                                <option value="Ranu Kumbolo">Ranu Kumbolo</option>
+                            </select>
+                        </div>
+                                            
+                        <!-- Tambahan Input Tanggal & Jumlah Peserta yang Rapi -->
+                        <div class="mb-3">
+                            <label class="form-label text-muted small mb-1">Tanggal Keberangkatan</label>
+                            <input type="date" class="form-control" name="tanggal" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" class="form-control" name="jumlah_peserta" placeholder="Jumlah Peserta (Contoh: 2)" min="1" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success w-100">Kirim Booking</button>
                     </form>
+                </div>
+            </div>
+
+    <!-- SECTION: Riwayat Pesanan Trip (Bentuk Bubble/Card) -->
+    <section class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-center mb-4 fw-bold">Riwayat Pesanan Trip Terbaru</h3>
+                <div class="row g-3">
+                    <?php
+                    $query = "SELECT * FROM pesanan ORDER BY id DESC";
+                    $result = mysqli_query($koneksi, $query);
+                    
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                            <div class="col-md-4">
+                                <div class="card shadow-sm border-0 rounded-4 p-3 h-100 bg-light">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <h5 class="fw-bold text-success mb-0"><?= htmlspecialchars($row['nama_peserta']) ?></h5>
+                                            <span class="badge bg-success text-white rounded-pill px-3 py-2"><?= htmlspecialchars($row['destinasi']) ?></span>
+                                        </div>
+                                        <p class="text-muted small mb-2"><i class="bi bi-envelope"></i> <?= htmlspecialchars($row['email']) ?></p>
+                                        <hr class="my-2">
+                                        <div class="d-flex justify-content-between text-secondary small">
+                                            <span><i class="bi bi-calendar"></i> <?= isset($row['tanggal']) ? htmlspecialchars($row['tanggal']) : '-' ?></span>
+                                            <span><i class="bi bi-people"></i> <?= isset($row['jumlah_peserta']) ? htmlspecialchars($row['jumlah_peserta']) : '-' ?> Orang</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    } else {
+                        echo "<div class='col-12 text-center py-4 text-muted'>Belum ada data pesanan yang masuk.</div>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="text-center py-4 bg-light border-top mt-4">
-        <div class="container">
-            <p class="mb-0 text-muted font-weight-semibold">&copy; 2026 OpenTrip Josefa. All Rights Reserved.</p>
-        </div>
+    <!-- Footer yang Rapi -->
+    <footer class="container text-center">
+        <hr>
+        <p class="text-muted small">&copy; 2026 OpenTrip Josefa. All Rights Reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
